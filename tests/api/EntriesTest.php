@@ -65,4 +65,18 @@ class EntriesTest extends TestCase
                 'mileage' => 12345,
             ]);
     }
+
+    /** @test */
+    public function it_deletes_an_entry()
+    {
+        $entry = factory(Entry::class)->make();
+
+        Vehicle::find(1)->entries()->save($entry);
+
+        $this->delete("api/vehicles/1/entries/{$entry->id}");
+        $this->assertResponseStatus(Response::HTTP_NO_CONTENT);
+
+        $this->get("api/vehicles/1/entries/{$entry->id}");
+        $this->assertResponseStatus(Response::HTTP_NOT_FOUND);
+    }
 }

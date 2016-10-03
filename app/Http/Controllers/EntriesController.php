@@ -15,7 +15,7 @@ class EntriesController extends Controller
      */
     public function index($vehicleId)
     {
-        return Vehicle::find($vehicleId)->entries;
+        return Vehicle::findOrFail($vehicleId)->entries;
     }
 
     /**
@@ -31,7 +31,7 @@ class EntriesController extends Controller
             'date_performed' => $request->input('date_performed'),
         ]);
 
-        Vehicle::find($vehicleId)->entries()->save($entry);
+        Vehicle::findOrFail($vehicleId)->entries()->save($entry);
 
         return $this->respondCreated();
     }
@@ -43,7 +43,7 @@ class EntriesController extends Controller
      */
     public function show($vehicleId, $entry)
     {
-        return Vehicle::find($vehicleId)->entries()->find($entry);
+        return Vehicle::findOrFail($vehicleId)->entries()->findOrFail($entry);
     }
 
     /**
@@ -54,7 +54,7 @@ class EntriesController extends Controller
      */
     public function update(UpdateEntryRequest $request, $vehicleId, $entry)
     {
-        Entry::find($entry)->update(
+        Entry::findOrFail($entry)->update(
             $request->input()
         );
 
@@ -68,7 +68,7 @@ class EntriesController extends Controller
      */
     public function destroy($vehicleId, $entry)
     {
-        Entry::find($entry)->delete();
+        Entry::findOrFail($entry)->delete();
 
         return $this->respondNoContent();
     }
