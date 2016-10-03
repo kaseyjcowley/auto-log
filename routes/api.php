@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::resource('/vehicles/{vehicleId}/entries', 'MaintenanceEntriesController', [
+Route::resource('/vehicles/{vehicleId}/entries', 'EntriesController', [
     'only' => [
         'index',
         'store',
