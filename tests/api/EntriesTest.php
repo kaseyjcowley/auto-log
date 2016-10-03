@@ -34,4 +34,15 @@ class EntriesTest extends TestCase
 
         $this->get('/api/vehicles/1/entries')->seeJson($data);
     }
+
+    /** @test */
+    public function it_shows_an_entry()
+    {
+        Vehicle::find(1)->entries()->save(
+            factory(Entry::class)->make()
+        );
+
+        $this->get('api/vehicles/1/entries/1')
+            ->seeJsonStructure(['id', 'vehicle_id', 'mileage', 'description', 'date_performed']);
+    }
 }
