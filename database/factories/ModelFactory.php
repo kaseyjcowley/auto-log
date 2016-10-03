@@ -21,3 +21,11 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+$factory->define(App\Entry::class, function (Faker\Generator $faker) {
+    return [
+        'mileage' => $faker->numberBetween(100, 100000),
+        'description' => $faker->sentence(),
+        'date_performed' => $faker->dateTimeThisYear(),
+    ];
+});

@@ -2,9 +2,9 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Model as EloquentModel;
 
-class Entry extends Model
+class Entry extends EloquentModel
 {
     protected $fillable = [
         'vehicle_id',
