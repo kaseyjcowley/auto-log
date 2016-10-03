@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMaintenanceEntriesTable extends Migration
+class CreateEntriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateMaintenanceEntriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('maintenance_entries', function (Blueprint $table) {
+        Schema::create('entries', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('vehicle_id');
             $table->unsignedMediumInteger('mileage');
@@ -35,6 +35,6 @@ class CreateMaintenanceEntriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('maintenance_entries');
+        Schema::dropIfExists('entries');
     }
 }

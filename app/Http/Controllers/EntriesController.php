@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Vehicle;
-use App\MaintenanceEntry;
-use App\Http\Requests\StoreMaintenanceEntryRequest;
-use App\Http\Requests\UpdateMaintenanceEntryRequest;
+use App\Entry;
+use App\Http\Requests\StoreEntryRequest;
+use App\Http\Requests\UpdateEntryRequest;
 
-class MaintenanceEntriesController extends Controller
+class EntriesController extends Controller
 {
     /**
      * @param  integer $vehicleId
@@ -19,13 +19,13 @@ class MaintenanceEntriesController extends Controller
     }
 
     /**
-     * @param  StoreMaintenanceEntryRequest $request
-     * @param  integer                      $vehicleId
+     * @param  StoreEntryRequest $request
+     * @param  integer           $vehicleId
      * @return Response
      */
-    public function store(StoreMaintenanceEntryRequest $request, $vehicleId)
+    public function store(StoreEntryRequest $request, $vehicleId)
     {
-        $entry = new MaintenanceEntry([
+        $entry = new Entry([
             'mileage' => $request->input('mileage'),
             'description' => $request->input('description'),
             'date_performed' => $request->input('date_performed'),
@@ -47,14 +47,14 @@ class MaintenanceEntriesController extends Controller
     }
 
     /**
-     * @param  UpdateMaintenanceEntryRequest $request
-     * @param  integer                       $vehicleId
-     * @param  integer                       $entry
+     * @param  UpdateEntryRequest $request
+     * @param  integer            $vehicleId
+     * @param  integer            $entry
      * @return Response
      */
-    public function update(UpdateMaintenanceEntryRequest $request, $vehicleId, $entry)
+    public function update(UpdateEntryRequest $request, $vehicleId, $entry)
     {
-        MaintenanceEntry::find($entry)->update(
+        Entry::find($entry)->update(
             $request->input()
         );
 
@@ -68,7 +68,7 @@ class MaintenanceEntriesController extends Controller
      */
     public function destroy($vehicleId, $entry)
     {
-        MaintenanceEntry::find($entry)->delete();
+        Entry::find($entry)->delete();
 
         return $this->respondNoContent();
     }

@@ -9,11 +9,11 @@ class Vehicle extends EloquentModel
     protected $fillable = ['make_id', 'model_id'];
 
     /**
-     * Get the maintenance entries
-     * @return MaintenanceEntry
+     * Get the vehicle entries
+     * @return Entry
      */
     public function entries()
     {
-        return $this->hasMany(MaintenanceEntry::class);
+        return $this->hasMany(Entry::class);
     }
 }
