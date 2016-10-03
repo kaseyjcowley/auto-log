@@ -45,4 +45,24 @@ class EntriesTest extends TestCase
         $this->get('api/vehicles/1/entries/1')
             ->seeJsonStructure(['id', 'vehicle_id', 'mileage', 'description', 'date_performed']);
     }
+
+    /** @test */
+    public function it_updates_an_entry()
+    {
+        $entry = factory(Entry::class)->make();
+
+        Vehicle::find(1)->entries()->save($entry);
+
+        $this->patch("api/vehicles/1/entries/{$entry->id}", [
+            'mileage' => 12345,
+        ]);
+
+        $this->assertResponseStatus(Response::HTTP_NO_CONTENT);
+
+        $this->get('api/vehicles/1/entries/1')
+            ->seeJson([
+                'id' => $entry->id,
+                'mileage' => 12345,
+            ]);
+    }
 }
