@@ -15,7 +15,7 @@ class EntriesController extends Controller
      */
     public function index($vehicleId)
     {
-        return Vehicle::findOrFail($vehicleId)->entries;
+        return Entry::forVehicle($vehicleId)->get();
     }
 
     /**
@@ -43,7 +43,7 @@ class EntriesController extends Controller
      */
     public function show($vehicleId, $entry)
     {
-        return Vehicle::findOrFail($vehicleId)->entries()->findOrFail($entry);
+        return Entry::forVehicle($vehicleId)->findOrFail($entry);
     }
 
     /**

@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model as EloquentModel;
+use Illuminate\Database\Eloquent\Builder;
 
 class Entry extends EloquentModel
 {
@@ -17,4 +18,14 @@ class Entry extends EloquentModel
         'vehicle_id' => 'integer',
         'mileage' => 'integer',
     ];
+
+    /**
+     * @param  Builder $query
+     * @param  integer $vehicleId
+     * @return Builder
+     */
+    public function scopeForVehicle(Builder $query, $vehicleId)
+    {
+        return $query->where('vehicle_id', $vehicleId);
+    }
 }
