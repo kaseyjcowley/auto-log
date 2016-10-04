@@ -13,6 +13,7 @@ class VehicleSeeder extends Seeder
     public function run()
     {
         Vehicle::create([
+            'user_id' => 1,
             'make_id' => 1,
             'model_id' => 1,
         ]);
