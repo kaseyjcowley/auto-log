@@ -13,7 +13,7 @@ class EntriesController extends Controller
      * @param  integer $vehicleId
      * @return Response
      */
-    public function index($vehicleId)
+    public function index(int $vehicleId)
     {
         return Entry::forVehicle($vehicleId)->get();
     }
@@ -23,7 +23,7 @@ class EntriesController extends Controller
      * @param  integer           $vehicleId
      * @return Response
      */
-    public function store(StoreEntryRequest $request, $vehicleId)
+    public function store(StoreEntryRequest $request, int $vehicleId)
     {
         $entry = new Entry([
             'mileage' => $request->input('mileage'),
@@ -41,7 +41,7 @@ class EntriesController extends Controller
      * @param  integer $entry
      * @return Response
      */
-    public function show($vehicleId, $entry)
+    public function show(int $vehicleId, int $entry)
     {
         return Entry::forVehicle($vehicleId)->findOrFail($entry);
     }
@@ -52,7 +52,7 @@ class EntriesController extends Controller
      * @param  integer            $entry
      * @return Response
      */
-    public function update(UpdateEntryRequest $request, $vehicleId, $entry)
+    public function update(UpdateEntryRequest $request, int $vehicleId, int $entry)
     {
         Entry::findOrFail($entry)->update(
             $request->input()
@@ -66,7 +66,7 @@ class EntriesController extends Controller
      * @param  integer $entry
      * @return Response
      */
-    public function destroy($vehicleId, $entry)
+    public function destroy(int $vehicleId, int $entry)
     {
         Entry::findOrFail($entry)->delete();
 

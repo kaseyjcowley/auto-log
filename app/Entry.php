@@ -24,7 +24,7 @@ class Entry extends EloquentModel
      * @param  integer $vehicleId
      * @return Builder
      */
-    public function scopeForVehicle(Builder $query, $vehicleId)
+    public function scopeForVehicle(Builder $query, int $vehicleId)
     {
         return $query->where('vehicle_id', $vehicleId);
     }
