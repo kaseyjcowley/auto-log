@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Vehicle;
+use App\User;
 
 class VehiclesController extends Controller
 {
@@ -32,9 +33,21 @@ class VehiclesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $userId)
     {
-        //
+        $this->validate($request, [
+            'make_id'  => 'required|integer|exists:makes,id',
+            'model_id' => 'required|integer|exists:models,id',
+        ]);
+
+        $vehicle = new Vehicle([
+            'make_id' => $request->input('make_id'),
+            'model_id' => $request->input('model_id'),
+        ]);
+
+        User::findOrFail($userId)->vehicles()->save($vehicle);
+
+        return $this->respondCreated($vehicle);
     }
 
     /**

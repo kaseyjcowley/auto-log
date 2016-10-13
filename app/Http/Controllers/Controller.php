@@ -16,9 +16,9 @@ class Controller extends BaseController
      * Respond 201
      * @return Response
      */
-    public function respondCreated()
+    public function respondCreated($data = [])
     {
-        return response(null, Response::HTTP_CREATED);
+        return response($data, Response::HTTP_CREATED);
     }
 
     /**
