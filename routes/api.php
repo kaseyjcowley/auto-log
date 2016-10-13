@@ -22,3 +22,13 @@ Route::resource('/vehicles/{vehicleId}/entries', 'EntriesController', [
         'destroy',
     ],
 ]);
+
+Route::resource('/users/{userId}/vehicles', 'VehiclesController', [
+    'only' => [
+        'index',
+        'store',
+        'show',
+        'update',
+        'destroy',
+    ],
+]);
